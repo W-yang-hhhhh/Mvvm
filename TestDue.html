@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .red{
+            color: red;
+        }
+        .blue{
+            color: blue;
+        }
+    </style>
+</head>
+<body>
+    <div id="test"> 
+        <span>欢迎贵宾{{content}}</span>
+        <input type="text" v-model ="content" v-on:keydown = "enter"> 
+        <ul>
+            <li v-for ="(item,index) in list">
+                <div>
+                    姓名：{{item.a}}
+                    年龄：{{item.b}}
+                </div>
+            </li>
+        </ul>
+        <img v-bind:src="imgSrc" alt="图片" style="width: 200px;height: 150px;"> 
+       
+        <img src="https://dss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3480070665,2380656812&fm=26&gp=0.jpg" style="width: 200px;height: 150px;" alt="123">
+        <span v-bind:class="haha">我的天啊</span>
+        <span :class="{red: obj.x < 2,blue:obj.x>5}">我的地啊</span>
+    </div>
+    <script type="module"> 
+        import Due from './core/index.js'
+       
+        window.test = new Due({
+            el:'test',
+            data:{
+                content:'wangyang',
+                haha:'red',
+                obj:{
+                    x:1,
+                    y:2,
+                    z:{
+                        c:1,
+                    }
+                },
+                list:[{a:'wangyang',b:18},{a:'ok',b:15},{a:'ok',b:15}],
+                imgSrc:"https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fattach.bbs.miui.com%2Fforum%2F201205%2F03%2F01400598djmyeczcskh2yr.jpg&refer=http%3A%2F%2Fattach.bbs.miui.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1617959815&t=73ac83b712f3b9698f6aabaa15d3341f"
+            },
+            methods:{
+                enter:function(){
+                    console.log("hellow");
+                }
+            },
+            created:function(){
+                console.log('初始化');
+            }
+        });
+    </script>
+</body>
+</html>
